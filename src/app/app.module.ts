@@ -20,6 +20,7 @@ import { MatDatepickerModule } from '@angular/material';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { DetalleComponent } from './clientes/detalle/detalle.component';
 import { LoginComponent } from './usuarios/login.component';
+import { RedirecionComponent } from './redirect/redirecion.component';
 
 registerLocaleData(localeES, 'es');
 
@@ -30,7 +31,8 @@ const routes: Routes = [
   { path: 'clientes/page/:page', component: ClientesComponent },
   { path: 'clientes/form', component: FormComponent },
   { path: 'clientes/form/:id', component: FormComponent },
-  { path: 'login', component: LoginComponent }
+  { path: 'login', component: LoginComponent },
+  { path: 'redireccion', component: RedirecionComponent }
 ];
 
 @NgModule({
@@ -43,7 +45,8 @@ const routes: Routes = [
     FormComponent,
     PaginatorComponent,
     DetalleComponent,
-    LoginComponent
+    LoginComponent,
+    RedirecionComponent
   ],
   imports: [
     BrowserModule,

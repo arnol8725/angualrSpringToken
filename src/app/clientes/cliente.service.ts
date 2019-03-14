@@ -24,7 +24,9 @@ export class ClienteService {
        
        return this.httpHeaders;
   }*/
-  private isNoAutorizado(e) : boolean{
+  
+  
+  /*private isNoAutorizado(e) : boolean{
     // 401 - Bo autorizado  403 - Forbidden Prohibido
 
           if (e.status==401 ){
@@ -44,7 +46,7 @@ export class ClienteService {
   }
       return false;
   }
-
+*/
 
 
   constructor(private http: HttpClient, private router: Router,private authService:AuthService) { }
@@ -52,7 +54,7 @@ export class ClienteService {
   getRegiones(): Observable<Region[]> {
     //return this.http.get<Region[]>(this.urlEndPoint + '/regiones',{headers: this.agregarAuthorizationHeader()}).pipe( catchError(e => {
       return this.http.get<Region[]>(this.urlEndPoint + '/regiones').pipe( catchError(e => {
-            this.isNoAutorizado(e);
+            //this.isNoAutorizado(e);
             return throwError(e);
     }))
   }
@@ -86,9 +88,10 @@ export class ClienteService {
       .pipe(
         map((response: any) => response.cliente as Cliente),
         catchError(e => {
-          if(this.isNoAutorizado(e)){
+          
+          /*if(this.isNoAutorizado(e)){
             return throwError(e);
-          }
+          }*/
 
           if (e.status == 400) {
             return throwError(e);
@@ -105,9 +108,9 @@ export class ClienteService {
     //return this.http.get<Cliente>(`${this.urlEndPoint}/${id}`,{headers:this.agregarAuthorizationHeader()}).pipe(
       return this.http.get<Cliente>(`${this.urlEndPoint}/${id}`).pipe(
       catchError(e => {
-        if(this.isNoAutorizado(e)){
+       /* if(this.isNoAutorizado(e)){
           return throwError(e);
-        }
+        }*/
         this.router.navigate(['/clientes']);
         console.error(e.error.mensaje);
         swal('Error al editar', e.error.mensaje, 'error');
@@ -120,9 +123,9 @@ export class ClienteService {
     //return this.http.put<any>(`${this.urlEndPoint}/${cliente.id}`, cliente, { headers: this.agregarAuthorizationHeader() }).pipe(
       return this.http.put<any>(`${this.urlEndPoint}/${cliente.id}`, cliente).pipe(
       catchError(e => {
-        if(this.isNoAutorizado(e)){
+      /*  if(this.isNoAutorizado(e)){
           return throwError(e);
-        }
+        } */
         if (e.status == 400) {
           return throwError(e);
         }
@@ -138,9 +141,9 @@ export class ClienteService {
     //return this.http.delete<Cliente>(`${this.urlEndPoint}/${id}`, { headers: this.agregarAuthorizationHeader() }).pipe(
       return this.http.delete<Cliente>(`${this.urlEndPoint}/${id}`).pipe(
       catchError(e => {
-        if(this.isNoAutorizado(e)){
+       /* if(this.isNoAutorizado(e)){
           return throwError(e);
-        }
+        } */
         console.error(e.error.mensaje);
         swal(e.error.mensaje, e.error.error, 'error');
         return throwError(e);

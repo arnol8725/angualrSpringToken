@@ -7,6 +7,7 @@ import { Observable, throwError } from 'rxjs';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { catchError } from 'rxjs/operators';
+import swal from 'sweetalert2';
 
 
 /** Pass untouched request through to the next request handler. */
@@ -23,12 +24,12 @@ export class AuthInterceptor implements HttpInterceptor {
       catchError(e => {
          // 401 - Bo autorizado  403 - Forbidden Prohibido
 
-         if (e.status==401 ){
+         if (e.status==401 ){      
           if(this.authService.isAuthenticated()){
               this.authService.deleteAuthenticated();
           }
           this.router.navigate(['/login']);
-          return true;
+         
 
     }
 

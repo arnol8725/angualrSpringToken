@@ -50,7 +50,7 @@ usuario :Usuario;
             console.log(`el valor de la respuesta ${this.authServices.bandera}`);
             
             
-            swal('Login',`Hola ${this.authServices.usuario}, has iniciado session con exito!!`);
+            swal('Login',`Hola ${this.authServices.usuario.username}, has iniciado session con exito!!`);
             
            this.router.navigate(['/clientes']);
           

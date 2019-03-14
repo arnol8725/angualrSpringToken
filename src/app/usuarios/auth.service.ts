@@ -43,12 +43,7 @@ public get token():string{
   return null;
 }
 
-public set usuario(usuario:Usuario):void{
-    this._usuario=usuario;
-}
-public set token(accessToken: string):void {
-  this._token=accessToken;
-}
+
 
   login(usuario:Usuario): Observable<any>{
     const urlEndpoint = 'http://localhost:8061/oauth/token';
@@ -128,6 +123,11 @@ public set token(accessToken: string):void {
     sessionStorage.removeItem('token');
 }
 
-
+hasRole(role:string): boolean {
+    if(this.usuario.roles.includes(role)){
+      return true;
+    }
+    return false;
+}
 
 }
